@@ -1,0 +1,57 @@
+# Prebid Server Configuration
+# Adapters: Magnite, PubMatic, OpenX
+
+adapters:
+  magnite:
+    enabled: true
+    endpoint: "https://prebid-server.magnite.com/openrtb2/auction"
+    # Add your Magnite credentials via environment variables
+    # MAGNITE_USER_ID and MAGNITE_SECRET_KEY
+  
+  pubmatic:
+    enabled: true
+    endpoint: "https://hbopenbid.pubmatic.com/translator?source=prebid-server"
+    # Add your PubMatic credentials via environment variables
+    # PUBMATIC_PUBLISHER_ID and PUBMATIC_PROFILE_ID
+  
+  openx:
+    enabled: true
+    endpoint: "https://prebid.openx.net/openrtb2/auction"
+    # Add your OpenX credentials via environment variables
+    # OPENX_PUBLISHER_ID and OPENX_AD_UNIT_ID
+
+# GDPR configuration
+gdpr:
+  enabled: true
+  host_vendor_id: 1
+  timeouts_ms:
+    init: 50
+    activities: 100
+    user_id: 50
+
+# Cache configuration
+cache:
+  scheme: "http"
+  host: "prebidcache"
+  query: "uuid"
+  path: "/cache"
+
+# HTTP configuration
+host_connection:
+  max_connections: 200
+  max_idle_connections: 50
+  max_idle_connections_per_host: 10
+  idle_connection_timeout_seconds: 90
+
+# Request timeout
+request_timeout_ms: 3000
+
+# Default currency
+currency_converter:
+  fetch_interval_seconds: 3600
+
+# Enable debug logging
+debug:
+  log_auction: true
+  log_adapters: true
+

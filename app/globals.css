@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+}
+
+/* Ensure input and textarea text is visible */
+input, textarea, select {
+  color: rgb(17, 24, 39) !important; /* text-gray-900 */
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgb(156, 163, 175) !important; /* text-gray-400 */
+}
+
+select option {
+  color: rgb(17, 24, 39) !important; /* text-gray-900 */
+}
+
+/* Ensure table and code block text is visible */
+table, th, td {
+  color: rgb(17, 24, 39) !important; /* text-gray-900 */
+}
+
+/* Default pre/code blocks to dark text */
+pre:not([style*="color"]), code:not([style*="color"]) {
+  color: rgb(17, 24, 39) !important; /* text-gray-900 */
+}
+

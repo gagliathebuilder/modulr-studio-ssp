@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  prebid-server:
+    build:
+      context: ./prebid-server
+      dockerfile: Dockerfile
+    container_name: modulr-prebid-server
+    ports:
+      - "8000:8000"
+    environment:
+      - PREBID_CONFIG_PATH=/config/config.yaml
+      # Add your adapter credentials here:
+      # - MAGNITE_USER_ID=your_magnite_user_id
+      # - MAGNITE_SECRET_KEY=your_magnite_secret_key
+      # - PUBMATIC_PUBLISHER_ID=your_pubmatic_publisher_id
+      # - PUBMATIC_PROFILE_ID=your_pubmatic_profile_id
+      # - OPENX_PUBLISHER_ID=your_openx_publisher_id
+      # - OPENX_AD_UNIT_ID=your_openx_ad_unit_id
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/status"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - modulr-network
+
+  prebidcache:
+    image: prebid/prebid-cache:latest
+    container_name: modulr-prebid-cache
+    ports:
+      - "2424:2424"
+    restart: unless-stopped
+    networks:
+      - modulr-network
+
+networks:
+  modulr-network:
+    driver: bridge
+

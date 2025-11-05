@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Publisher {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String?
+  company       String?
+  rssFeeds      Json?     @default("[]")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  episodes      Episode[]
+  campaigns     Campaign[]
+}
+
+model Episode {
+  id               Int           @id @default(autoincrement())
+  title            String
+  rssUrl           String?
+  transcript       String?
+  enrichedMetadata Json?
+  brandSafetyScore Float?
+  sentiment        String?
+  contextualScore  Float?
+  adBreaks         Json?         @default("[]")
+  createdAt        DateTime      @default(now())
+  publisher        Publisher     @relation(fields: [publisherId], references: [id])
+  publisherId      Int
+  analysisLogs     AnalysisLog[]
+}
+
+model Campaign {
+  id                Int       @id @default(autoincrement())
+  name              String
+  status            String
+  budget            Float
+  impressions       Int
+  ctr               Float
+  targetingFilters  Json?
+  simulatedCpm      Float?
+  createdAt         DateTime  @default(now())
+  publisher         Publisher @relation(fields: [publisherId], references: [id])
+  publisherId       Int
+}
+
+model AnalysisLog {
+  id          Int      @id @default(autoincrement())
+  episodeId   Int
+  rawInput    String?
+  outputData  Json?
+  createdAt   DateTime @default(now())
+  episode     Episode  @relation(fields: [episodeId], references: [id])
+}
