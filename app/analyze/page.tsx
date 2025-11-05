@@ -46,7 +46,6 @@ export default function AnalyzePage() {
       });
 
       if (!response.ok) {
-<<<<<<< HEAD
         // Try to parse error, but handle HTML error pages
         let errorData;
         try {
@@ -60,10 +59,6 @@ export default function AnalyzePage() {
           throw new Error(`Server error: ${response.status}`);
         }
         throw new Error(errorData.error || errorData.message || "Failed to analyze episode");
-=======
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to analyze episode");
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
       }
 
       const data = await response.json();
@@ -102,11 +97,7 @@ export default function AnalyzePage() {
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-<<<<<<< HEAD
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 placeholder:text-gray-400"
-=======
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
                 placeholder="Enter episode title"
               />
             </div>
@@ -123,11 +114,7 @@ export default function AnalyzePage() {
                 id="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-<<<<<<< HEAD
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 placeholder:text-gray-400"
-=======
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
                 placeholder="https://example.com/podcast/rss.xml"
               />
             </div>
@@ -153,11 +140,7 @@ export default function AnalyzePage() {
                 value={transcript}
                 onChange={(e) => setTranscript(e.target.value)}
                 rows={8}
-<<<<<<< HEAD
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 placeholder:text-gray-400"
-=======
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
                 placeholder="Paste episode transcript here..."
               />
             </div>
