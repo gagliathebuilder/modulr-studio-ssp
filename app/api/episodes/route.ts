@@ -1,15 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/db";
-<<<<<<< HEAD
 import { Prisma } from "@prisma/client";
-=======
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
 
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const limit = searchParams.get("limit");
-<<<<<<< HEAD
     const publisherId = searchParams.get("publisherId");
     const sentiment = searchParams.get("sentiment");
     const iabCategory = searchParams.get("iabCategory");
@@ -61,13 +57,6 @@ export async function GET(req: Request) {
     // Fetch episodes with filters (excluding IAB category which we'll filter in memory)
     let episodes = await prisma.episode.findMany({
       where,
-=======
-    const skip = searchParams.get("skip");
-
-    const episodes = await prisma.episode.findMany({
-      take: limit ? parseInt(limit, 10) : undefined,
-      skip: skip ? parseInt(skip, 10) : undefined,
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
       orderBy: {
         createdAt: "desc",
       },
@@ -77,16 +66,12 @@ export async function GET(req: Request) {
             id: true,
             name: true,
             email: true,
-<<<<<<< HEAD
             company: true,
-=======
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
           },
         },
       },
     });
 
-<<<<<<< HEAD
     // Filter by IAB category in memory (if specified)
     if (iabCategory) {
       episodes = episodes.filter((episode) => {
@@ -110,11 +95,6 @@ export async function GET(req: Request) {
       episodes: paginatedEpisodes,
       count: paginatedEpisodes.length,
       totalCount,
-=======
-    return NextResponse.json({
-      episodes,
-      count: episodes.length,
->>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
     });
   } catch (error) {
     console.error("Failed to fetch episodes:", error);
