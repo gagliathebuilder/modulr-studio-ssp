@@ -80,7 +80,11 @@ export async function POST(req: Request) {
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(
+<<<<<<< HEAD
         { error: "Invalid request data", details: error.issues },
+=======
+        { error: "Invalid request data", details: error.errors },
+>>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
         { status: 400 }
       );
     }

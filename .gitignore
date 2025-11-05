@@ -32,7 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+<<<<<<< HEAD
 !.env.example
+=======
+>>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
 
 # vercel
 .vercel
@@ -41,6 +44,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+<<<<<<< HEAD
 # prisma generated
 /app/generated/prisma
 /modulr-studio-ssp/app/generated/prisma
@@ -49,3 +53,6 @@ next-env.d.ts
 *.db
 *.sqlite
 
+=======
+/app/generated/prisma
+>>>>>>> 11ccb6c9451012911cd672ede8ba81d7a497e62e
